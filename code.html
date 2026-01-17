@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Amanda Ansoar - Nails Salon</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#91c1a6", // Muted brownish gold for buttons/accents
+              "primary-hover": "#91a88c", // Slightly darker for hover state
+              "background-light": "#EBEAE0", // Light cream/beige
+              "background-dark": "#1F1E1B", // Dark charcoal/brownish black
+              "surface-light": "#F5F4ED",
+              "surface-dark": "#2D2B28",
+              "text-main-light": "#1A1A1A",
+              "text-main-dark": "#E5E5E5",
+              "text-muted-light": "#555555",
+              "text-muted-dark": "#A3A3A3",
+              "footer-bg": "#5D4F42", // Dark brown from footer
+            },
+            fontFamily: {
+              display: ["Cormorant Garamond", "serif"],
+                sans: ["Helvetica Neue", "Arial", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "4px",
+            },
+            backgroundImage: {
+                'subtle-pattern': "url('data:image/svg+xml,%3Csvg width=\\'60\\' height=\\'60\\' viewBox=\\'0 0 60 60\\' xmlns=\\'http://www.w3.org/2000/svg\\'%3E%3Cg fill=\\'none\\' fill-rule=\\'evenodd\\'%3E%3Cg fill=\\'%239C855F\\' fill-opacity=\\'0.05\\'%3E%3Cpath d=\\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')",
+            }
+          },
+        },
+      };
+    </script>
+<style>
+        .curved-line {
+            position: absolute;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.15;
+        }::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #EBEAE0;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #9C855F;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-main-light dark:text-text-main-dark font-sans transition-colors duration-300">
+<div class="fixed inset-0 pointer-events-none overflow-hidden h-full w-full z-0">
+<svg class="curved-line top-0 left-0 w-full h-full stroke-primary dark:stroke-white" fill="none" viewBox="0 0 1440 900" xmlns="http://www.w3.org/2000/svg">
+<path d="M-100 600 C 200 400, 600 800, 1500 200" fill="none" stroke-width="1.5"></path>
+<path d="M-100 650 C 250 450, 650 850, 1550 250" fill="none" stroke-width="1.5"></path>
+</svg>
+</div>
+<header class="relative z-50 px-6 py-6 md:px-12 flex justify-between items-center max-w-7xl mx-auto">
+<div class="flex items-center">
+<img alt="Amanda Ansoar Logo" class="h-36 w-auto object-contain mix-blend-multiply dark:mix-blend-normal dark:invert" src=".\img\amandalogo.png"/>
+</div>
+<nav class="hidden md:flex space-x-12">
+<a class="text-sm uppercase tracking-widest hover:text-primary transition-colors font-medium border-b-2 border-primary pb-1" href="#">Home</a>
+<a class="text-sm uppercase tracking-widest text-text-muted-light dark:text-text-muted-dark hover:text-primary transition-colors font-medium" href="#">About</a>
+<a class="text-sm uppercase tracking-widest text-text-muted-light dark:text-text-muted-dark hover:text-primary transition-colors font-medium" href="#">Service</a>
+<a class="text-sm uppercase tracking-widest text-text-muted-light dark:text-text-muted-dark hover:text-primary transition-colors font-medium" href="#">Location</a>
+</nav>
+<button class="md:hidden text-text-main-light dark:text-text-main-dark">
+<span class="material-icons-outlined">menu</span>
+</button>
+</header>
+<section class="relative z-10 max-w-7xl mx-auto px-6 md:px-12 py-12 md:py-20 lg:py-24 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+<div class="space-y-8 pr-0 lg:pr-12">
+<h1 class="text-5xl md:text-7xl font-display leading-tight text-text-main-light dark:text-text-main-dark">
+                Beauty <br/> <span class="italic">Nails</span>
+</h1>
+<p class="text-text-muted-light dark:text-text-muted-dark text-lg md:text-xl max-w-md leading-relaxed">
+                We make your nails look beautiful and healthy, we provide you with many amazing services. Try now.
+            </p>
+<button class="bg-primary hover:bg-primary-hover text-white px-8 py-4 rounded-none font-sans font-bold tracking-wide transition-colors shadow-lg">
+                Get Started
+            </button>
+</div>
+<div class="relative mt-8 lg:mt-0">
+<div class="grid grid-cols-2 gap-4 relative">
+<div class="col-span-1 pt-12">
+<img alt="Beautiful manicure close up" class="w-full h-64 md:h-80 object-cover shadow-xl rounded-sm transform translate-y-4" src="./img/rubberbase.jpeg"/>
+</div>
+<div class="col-span-1">
+<img alt="Luxurious nail spa setting" class="w-full h-64 md:h-80 object-cover shadow-xl rounded-sm" src="./img/colorpastel.jpeg"/>
+</div>
+<div class="absolute bottom-4 right-4 md:right-12 bg-primary/90 dark:bg-surface-dark/95 backdrop-blur-sm p-6 max-w-xs shadow-2xl rounded-sm text-white dark:text-gray-100">
+<h3 class="font-display text-xl mb-2">Pastel Nails</h3>
+<p class="text-sm opacity-90 mb-4 font-light">Pastel nails using a popular color for the nail polish like mint pink lavender etc.</p>
+<a class="text-sm font-bold uppercase tracking-wide flex items-center gap-2 hover:gap-3 transition-all" href="#">
+                        Try Now <span class="material-icons-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<section class="relative z-10 max-w-7xl mx-auto px-6 md:px-12 py-20">
+<div class="text-center mb-16">
+<h2 class="text-3xl md:text-4xl font-display text-text-main-light dark:text-text-main-dark mb-4">We have a lot of benefit <br/> you may like</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+<div class="group p-6 bg-transparent hover:bg-white dark:hover:bg-surface-dark transition-colors duration-300 rounded-lg">
+<div class="border-l-4 border-primary pl-4 mb-4">
+<h3 class="font-display text-xl font-bold text-text-main-light dark:text-text-main-dark">Affordable Price</h3>
+</div>
+<p class="text-text-muted-light dark:text-text-muted-dark text-sm leading-relaxed">
+                    We give you exclusive and luxury design but also an affordable price so every person can afford.
+                </p>
+</div>
+<div class="group p-6 bg-transparent hover:bg-white dark:hover:bg-surface-dark transition-colors duration-300 rounded-lg">
+<div class="border-l-4 border-primary pl-4 mb-4">
+<h3 class="font-display text-xl font-bold text-text-main-light dark:text-text-main-dark">Easy Payment</h3>
+</div>
+<p class="text-text-muted-light dark:text-text-muted-dark text-sm leading-relaxed">
+                    We work with many large bank companies thats why we have a many payment options.
+                </p>
+</div>
+<div class="group p-6 bg-transparent hover:bg-white dark:hover:bg-surface-dark transition-colors duration-300 rounded-lg">
+<div class="border-l-4 border-primary pl-4 mb-4">
+<h3 class="font-display text-xl font-bold text-text-main-light dark:text-text-main-dark">Best Service</h3>
+</div>
+<p class="text-text-muted-light dark:text-text-muted-dark text-sm leading-relaxed">
+                    We never disappoint our customer because we give them our best service.
+                </p>
+</div>
+<div class="group p-6 bg-transparent hover:bg-white dark:hover:bg-surface-dark transition-colors duration-300 rounded-lg">
+<div class="border-l-4 border-primary pl-4 mb-4">
+<h3 class="font-display text-xl font-bold text-text-main-light dark:text-text-main-dark">Near City</h3>
+</div>
+<p class="text-text-muted-light dark:text-text-muted-dark text-sm leading-relaxed">
+                    Our place is on the middle of city therefore you can reach us easily.
+                </p>
+</div>
+</div>
+</section>
+<section class="relative z-10 bg-white dark:bg-surface-dark py-20 transition-colors duration-300">
+<div class="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+<div class="lg:col-span-7">
+<img alt="Close up of hands with fresh manicure" class="w-full h-80 lg:h-96 object-cover rounded-sm shadow-md" src=".\img\salon.jpeg"/>
+</div>
+<div class="lg:col-span-5 space-y-6">
+<h3 class="font-display text-3xl md:text-4xl text-text-main-light dark:text-text-main-dark leading-tight">Experiencia y belleza en un solo lugar</h3>
+<p class="text-text-muted-light dark:text-text-muted-dark text-sm leading-relaxed">
+Fundado por una ex cheerleader de la NFL, Amanda Ansoar es un salón de uñas y peluquería que combina calidad, estilo y precios accesibles. Ofrecemos servicios profesionales de manicura, pedicura y cuidado capilar en un ambiente moderno, relajante y acogedor, pensado para que cada cliente se sienta especial desde el primer momento. Nuestro espacio está diseñado para que disfrutes de tratamientos de lujo sin salir de tu zona de confort, cuidando cada detalle y adaptándonos a tu estilo de vida.
+</p>
+<button class="bg-primary hover:bg-primary-hover text-white px-6 py-3 text-sm rounded-none font-bold uppercase tracking-wider transition-colors">
+                    Leer más
+                </button>
+</div>
+</div>
+</section>
+<section class="relative z-10 max-w-7xl mx-auto px-6 md:px-12 py-24">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+<div class="order-2 lg:order-1 relative">
+<img alt="Nail technician applying polish" class="w-full h-[500px] object-cover rounded-sm shadow-xl" src="./img/polygel.jpeg"/>
+<div class="absolute -bottom-6 -right-6 w-24 h-24 bg-primary/20 rounded-full z-[-1]"></div>
+</div>
+<div class="order-1 lg:order-2 space-y-10">
+<h2 class="text-4xl font-display text-text-main-light dark:text-text-main-dark mb-8">Nuestros servicios a tu disposición</h2>
+<div class="space-y-8">
+<div class="flex gap-4">
+<div class="mt-1 text-primary">
+<img alt="manicure service" class=" h-10 " src="./icons/manicura.png"/>
+ </div>
+<div>
+<h4 class="font-bold text-lg text-text-main-light dark:text-text-main-dark font-display mb-1">Manicura</h4>
+<p class="text-sm text-text-muted-light dark:text-text-muted-dark leading-relaxed">Diseño, limpieza y esmaltado profesional para manos siempre perfectas.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="mt-1 text-primary">
+<img alt="pedicure service" class=" h-10 " src="./icons/pedicure.png"/>
+</div>
+<div>
+<h4 class="font-bold text-lg text-text-main-light dark:text-text-main-dark font-display mb-1">Pedicura</h4>
+<p class="text-sm text-text-muted-light dark:text-text-muted-dark leading-relaxed">Tratamientos estéticos y relajantes para el cuidado integral de tus pies.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="mt-1 text-primary">
+<img alt="Alisados service" class=" h-10 " src="./icons/plancha-de-pelo.png"/>
+</div>
+<div>
+<h4 class="font-bold text-lg text-text-main-light dark:text-text-main-dark font-display mb-1">Alisados</h4>
+<p class="text-sm text-text-muted-light dark:text-text-muted-dark leading-relaxed">Resultados lisos, naturales y duraderos con productos de alta calidad.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="mt-1 text-primary">
+<img alt="Capillar treatment service" class=" h-10 " src="./icons/belleza.png"/>
+</div>
+<div>
+<h4 class="font-bold text-lg text-text-main-light dark:text-text-main-dark font-display mb-1">Tratamientos capilares</h4>
+<p class="text-sm text-text-muted-light dark:text-text-muted-dark leading-relaxed">Hidratación, reparación y nutrición profunda para tu cabello.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="relative z-10 bg-surface-light dark:bg-surface-dark py-24 transition-colors duration-300">
+<div class="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-12">
+<div class="lg:col-span-7">
+<h2 class="text-3xl md:text-4xl font-display text-text-main-light dark:text-text-main-dark mb-10">Nuestras preguntas más frecuentes</h2>
+<div class="space-y-4">
+<div class="border-b border-gray-300 dark:border-gray-700 pb-4">
+<details class="group cursor-pointer">
+<summary class="flex justify-between items-center font-medium text-text-main-light dark:text-text-main-dark list-none">
+                                Como agendar un servicio
+                                <span class="transition group-open:rotate-180 material-icons-outlined text-gray-400">expand_more</span>
+</summary>
+<div class="text-text-muted-light dark:text-text-muted-dark text-sm mt-3 leading-relaxed">
+                                Usted puede agendar un servicio a traves del formulario en esta web o a través de Whatsapp.
+</details>
+</div>
+<div class="border-b border-gray-300 dark:border-gray-700 pb-4">
+<details class="group cursor-pointer">
+<summary class="flex justify-between items-center font-medium text-text-main-light dark:text-text-main-dark list-none">
+                                Métodos de pago aceptados
+                                <span class="transition group-open:rotate-180 material-icons-outlined text-gray-400">expand_more</span>
+</summary>
+<div class="text-text-muted-light dark:text-text-muted-dark text-sm mt-3 leading-relaxed">
+                                Aceptamos pagos en efectivo, tarjetas de crédito y débito.   
+</div>
+</details>
+</div>
+<div class="border-b border-gray-300 dark:border-gray-700 pb-4">
+<details class="group cursor-pointer">
+<summary class="flex justify-between items-center font-medium text-text-main-light dark:text-text-main-dark list-none">
+                                Horarios de atención
+                                <span class="transition group-open:rotate-180 material-icons-outlined text-gray-400">expand_more</span>
+</summary>
+<div class="text-text-muted-light dark:text-text-muted-dark text-sm mt-3 leading-relaxed">
+                                Estamos abiertos de lunes a viernes de 10:00 a 14:00 y de 16:00 a 20:00. Sábados de 10:00 a 14:00 Cerramos los domingos.
+</details>
+</div>
+<div class="border-b border-gray-300 dark:border-gray-700 pb-4">
+<details class="group cursor-pointer">
+<summary class="flex justify-between items-center font-medium text-text-main-light dark:text-text-main-dark list-none">
+                                Precios de los servicios
+                                <span class="transition group-open:rotate-180 material-icons-outlined text-gray-400">expand_more</span>
+</summary>
+<div class="text-text-muted-light dark:text-text-muted-dark text-sm mt-3 leading-relaxed">
+                                Nuestros precios varían según el servicio. Consulte nuestra lista de precios en la sección de servicios.            
+</div>
+</details>
+</div>
+</div>
+</div>
+<div class="lg:col-span-5 h-full">
+<img alt="Elegant hand with jewelry" class="w-full h-full min-h-[400px] object-cover rounded-sm shadow-md" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzc8RdonmnCPqD4YeKNacUblNe3BXrW7nRU90bVv5r0jkHK1h3_DqGNMjLMqdfGzWPxYxAWKVd_lHvbyRPHkX6qk_1dzNYEpvStnwOMXNccFyfxMP-G8ggz4NADdX4C-y9UxHh3KVarm8AhY15dK6JANwpMJm9r0KlbTVtsJx67HQhZofJNo8fRC9A51brWtBE3fN-0Bt_Kbx10TSgAkv1bZ1fcxHjg91LJJCe9ok24ZUAumXHzXAonhPWGX7BSKN4zvfj-otCBbM"/>
+</div>
+</div>
+</section>
+<section class="relative z-10 max-w-7xl mx-auto px-6 md:px-12 py-20 pb-32 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+<div>
+<img alt="Time saving beauty service" class="w-full h-80 object-cover rounded-sm shadow-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-cK0wTXff_HAiLMFy5TweafTIUNsWRHuBdp37iHXQI2K4zhxjexJKeoWOzzglyCGW6CbqGkCDj87IF_rx1u39PBRkwrqJxgYKY9JCearqyGSzJ2pMGsIkscmRCgigN0_CjYG1X8kv-ADJyfTwU8spS6d8RW1wpPyuPypNPtWPFLrQNht5t73HhsZy_Zh8O5UJckM3fY4uR7JG3yOVqB9q4Kr2MoEtLmH-aarKQmQZWzyhOUSwIA85-m8p63bUMVpVFtVAZFw84sQ"/>
+</div>
+<div>
+<h2 class="text-4xl font-display text-text-main-light dark:text-text-main-dark mb-6 leading-tight">Save your time by using our service</h2>
+<p class="text-text-muted-light dark:text-text-muted-dark mb-8">
+                Our efficient booking system and professional staff ensure you get the pampering you need without the wait.
+            </p>
+<button class="bg-primary hover:bg-primary-hover text-white px-8 py-3 rounded-none font-bold tracking-wide transition-colors">
+                Book Appointment
+            </button>
+</div>
+</section>
+<footer class="bg-footer-bg text-white py-16">
+<div class="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-4 gap-12">
+<div class="col-span-1 md:col-span-1">
+<h3 class="text-2xl font-display font-bold mb-4">Amanda Ansoar</h3>
+<p class="text-gray-300 text-xs leading-relaxed mb-6">
+                    Amanda Ansoar works to meet the nail needs of women of color. First, we do not discriminate and anyone can get our services for an affordable price.
+                </p>
+<div class="flex space-x-4">
+<a class="text-white hover:text-primary transition-colors" href="#"><i class="material-icons-outlined text-lg">facebook</i></a>
+<a class="text-white hover:text-primary transition-colors" href="#"><i class="material-icons-outlined text-lg">smart_display</i></a>
+<a class="text-white hover:text-primary transition-colors" href="#"><i class="material-icons-outlined text-lg">alternate_email</i></a>
+</div>
+</div>
+<div class="col-span-1">
+<h4 class="font-display font-bold text-lg mb-6">About</h4>
+<ul class="space-y-3 text-sm text-gray-300">
+<li><a class="hover:text-white transition-colors" href="#">Service</a></li>
+<li><a class="hover:text-white transition-colors" href="#">History</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Projects</a></li>
+<li><a class="hover:text-white transition-colors" href="#">FAQ</a></li>
+</ul>
+</div>
+<div class="col-span-1">
+<h4 class="font-display font-bold text-lg mb-6">Service</h4>
+<ul class="space-y-3 text-sm text-gray-300">
+<li><a class="hover:text-white transition-colors" href="#">Manicure</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Pedicure</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Nail Polish</a></li>
+<li><a class="hover:text-white transition-colors" href="#">More...</a></li>
+</ul>
+</div>
+<div class="col-span-1">
+<h4 class="font-display font-bold text-lg mb-6">Product</h4>
+<ul class="space-y-3 text-sm text-gray-300">
+<li><a class="hover:text-white transition-colors" href="#">Nail Polish</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Nail Clipper</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Nail Brush</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Nail Decoration</a></li>
+</ul>
+</div>
+</div>
+<div class="max-w-7xl mx-auto px-6 md:px-12 mt-12 pt-8 border-t border-gray-600 text-center md:text-left text-xs text-gray-400">
+            © 2026 Amanda Ansoar Salon. All rights reserved.
+        </div>
+</footer>
+</body></html>
