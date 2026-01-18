@@ -20,7 +20,7 @@
 
 .mobile-menu-link {
   position: relative;
-  display: block;
+  display: inline-flex;
   align-items: center;
   gap: 0.75rem;
   color: inherit;
