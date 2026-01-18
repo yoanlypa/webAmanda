@@ -1,0 +1,53 @@
+.curved-line {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.15;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #ebeae0;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #9c855f;
+  border-radius: 4px;
+}
+
+.mobile-menu-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: inherit;
+  transition: color 200ms ease, transform 200ms ease;
+}
+
+.mobile-menu-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -0.35rem;
+  height: 1px;
+  width: 100%;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 240ms ease;
+  opacity: 0.65;
+}
+
+.mobile-menu-link:hover,
+.mobile-menu-link:focus-visible {
+  color: #91c1a6;
+  transform: translateX(4px);
+}
+
+.mobile-menu-link:hover::after,
+.mobile-menu-link:focus-visible::after {
+  transform: scaleX(1);
+}
