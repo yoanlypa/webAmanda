@@ -51,3 +51,75 @@
 .mobile-menu-link:focus-visible::after {
   transform: scaleX(1);
 }
+
+.service-filter {
+  border: 1px solid rgba(145, 193, 166, 0.4);
+  color: inherit;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 0.65rem 1rem;
+  transition: all 180ms ease;
+}
+
+.service-filter:hover,
+.service-filter:focus-visible,
+.service-filter.is-active {
+  background-color: #91c1a6;
+  border-color: #91c1a6;
+  color: #fff;
+}
+
+.service-card {
+  border: 1px solid rgba(145, 193, 166, 0.24);
+  background: rgba(245, 244, 237, 0.55);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+}
+
+.dark .service-card {
+  background: rgba(45, 43, 40, 0.55);
+}
+
+.service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px -24px rgba(0, 0, 0, 0.4);
+  border-color: rgba(145, 193, 166, 0.65);
+}
+
+.service-card-tag {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: #91c1a6;
+}
+
+.service-card-title {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 700;
+  font-size: 1.6rem;
+  line-height: 1.1;
+}
+
+.service-card-description {
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: #555;
+}
+
+.dark .service-card-description {
+  color: #a3a3a3;
+}
+
+.service-card-meta {
+  margin-top: auto;
+  padding-top: 0.35rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+}

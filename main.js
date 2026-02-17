@@ -47,3 +47,31 @@ document.addEventListener("keydown", (event) => {
     setMenuState(false);
   }
 });
+
+const filterButtons = document.querySelectorAll(".service-filter");
+const serviceCards = document.querySelectorAll(".service-card");
+
+const applyServiceFilter = (filter) => {
+  serviceCards.forEach((card) => {
+    const categories = card.dataset.category?.split(" ") ?? [];
+    const shouldShow = filter === "todos" || categories.includes(filter);
+    card.classList.toggle("hidden", !shouldShow);
+  });
+
+  filterButtons.forEach((button) => {
+    const isCurrent = button.dataset.filter === filter;
+    button.classList.toggle("is-active", isCurrent);
+    button.setAttribute("aria-selected", String(isCurrent));
+  });
+};
+
+if (filterButtons.length > 0 && serviceCards.length > 0) {
+  filterButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const filter = button.dataset.filter ?? "todos";
+      applyServiceFilter(filter);
+    });
+  });
+
+  applyServiceFilter("todos");
+}
