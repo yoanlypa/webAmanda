@@ -1,411 +1,218 @@
-<!DOCTYPE html>
-<html lang="es"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Amanda Ansoar - Salón de Uñas</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nails Ansoar</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
-<link href="./style.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f6efeb;--ink:#231c1a;--soft:#7d6a64;--nude:#e9cfc6;--rose:#c98b86;--card:rgba(255,250,247,.82);--line:rgba(35,28,26,.12)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#171211;--ink:#f6ece7;--soft:#bfa9a2;--card:rgba(30,23,22,.8);--line:rgba(255,255,255,.14)}}
+:root[data-theme="dark"]{--bg:#171211;--ink:#f6ece7;--soft:#bfa9a2;--card:rgba(30,23,22,.8);--line:rgba(255,255,255,.14)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:300 17px/1.6 Jost,sans-serif;overflow-x:hidden}
+h1,h2,h3{font-family:"Cormorant Garamond",serif;font-weight:400;line-height:1.05}
+a{color:inherit}
+/* Fondo de vídeo por scroll */
+.stage{position:fixed;inset:0;z-index:0}
+canvas{width:100%;height:100%;display:block}
+.stage::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(20,14,13,.62) 0%,rgba(20,14,13,.25) 45%,rgba(20,14,13,0) 70%)}
+@media (max-width:760px){.stage::after{background:linear-gradient(180deg,rgba(20,14,13,.55),rgba(20,14,13,.15) 50%,rgba(20,14,13,.6))}}
+.bar{position:fixed;top:0;left:0;height:2px;background:var(--rose);z-index:20;width:0}
+nav{position:fixed;top:0;left:0;right:0;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:20px clamp(16px,4vw,48px);color:#fff}
+.logo{font:500 22px "Cormorant Garamond",serif;letter-spacing:.18em;text-transform:uppercase}
+.btn{display:inline-block;padding:12px 26px;border-radius:40px;background:var(--rose);color:#fff;text-decoration:none;font-weight:400;letter-spacing:.06em;font-size:14px;text-transform:uppercase;transition:transform .3s}
+.btn:hover{transform:translateY(-2px)}
+.btn.ghost{background:transparent;border:1px solid rgba(255,255,255,.6)}
+/* Capítulos sobre el vídeo */
+.scrolly{position:relative;z-index:2}
+.chap{min-height:100vh;display:flex;align-items:center;padding:0 clamp(16px,6vw,96px);color:#fff}
+.chap .in{max-width:520px;opacity:0;transform:translateY(40px);transition:opacity 1s,transform 1s}
+.chap.on .in{opacity:1;transform:none}
+.kick{font-size:12px;letter-spacing:.32em;text-transform:uppercase;opacity:.85;margin-bottom:18px;display:block}
+.chap h1{font-size:clamp(54px,10vw,128px)}
+.chap h1 em{font-style:italic;color:var(--nude)}
+.chap h2{font-size:clamp(40px,6vw,76px)}
+.chap p{margin-top:20px;font-size:18px;opacity:.92}
+.chap .ctas{margin-top:32px;display:flex;gap:12px;flex-wrap:wrap}
+@media (max-width:760px){.chap{align-items:flex-end;padding-bottom:16vh}}
+/* Contenido normal */
+.content{position:relative;z-index:3;background:var(--bg)}
+section.s{padding:clamp(72px,10vw,130px) clamp(16px,6vw,96px);max-width:1240px;margin:0 auto}
+.s h2{font-size:clamp(40px,5vw,64px);margin-bottom:12px}
+.s .lead{color:var(--soft);max-width:560px;margin-bottom:48px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.svc{background:var(--bg);padding:32px 28px;transition:background .3s}
+.svc:hover{background:var(--card)}
+.svc h3{font-size:30px}
+.svc p{color:var(--soft);font-size:15px;margin:8px 0 18px}
+.svc .row{display:flex;justify-content:space-between;font-size:14px;letter-spacing:.06em}
+.svc .price{font:500 26px "Cormorant Garamond",serif;color:var(--rose)}
+.gal{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.gal div{aspect-ratio:3/4;border-radius:6px;background:linear-gradient(135deg,var(--nude),var(--rose));display:flex;align-items:flex-end;padding:14px;color:#fff;font-size:13px;letter-spacing:.1em;text-transform:uppercase}
+.gal div:nth-child(2n){background:linear-gradient(160deg,#d9b7ad,#8e5f5a)}
+.gal div:nth-child(3n){background:linear-gradient(200deg,#f1dfd8,#c49a90)}
+@media (max-width:760px){.gal{grid-template-columns:repeat(2,1fr)}}
+.about{display:grid;grid-template-columns:1fr 1.2fr;gap:clamp(32px,6vw,80px);align-items:center}
+.about .ph{aspect-ratio:4/5;border-radius:200px 200px 8px 8px;background:linear-gradient(180deg,var(--nude),var(--rose));display:grid;place-items:center;color:#fff;font-size:13px;letter-spacing:.2em;text-transform:uppercase}
+@media (max-width:760px){.about{grid-template-columns:1fr}}
+.find{border-top:1px solid var(--line)}
+.find .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:32px}
+.find .cols div span{display:block;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--soft);margin-bottom:6px}
+.cta{text-align:center;background:var(--ink);color:var(--bg)}
+.cta h2{color:var(--bg)}
+.cta-wrap{background:var(--ink)}
+footer{padding:28px 16px;text-align:center;font-size:13px;color:var(--soft)}
+.wa{position:fixed;right:18px;bottom:18px;z-index:30;width:56px;height:56px;border-radius:50%;background:#25d366;display:grid;place-items:center;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+.loader{position:fixed;inset:0;z-index:50;background:#171211;color:#f6ece7;display:grid;place-items:center;font:400 28px "Cormorant Garamond",serif;letter-spacing:.2em;transition:opacity .8s}
+.loader.done{opacity:0;pointer-events:none}
+.benef{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:28px}
+.benef h3{font-size:28px;color:var(--rose)}.benef p{color:var(--soft);font-size:15px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px}
+.tabs button{font:400 13px Jost,sans-serif;letter-spacing:.1em;text-transform:uppercase;padding:9px 18px;border-radius:30px;border:1px solid var(--line);background:none;color:var(--ink);cursor:pointer}
+.tabs button.on{background:var(--rose);color:#fff;border-color:var(--rose)}
+.svc img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:4px;margin-bottom:18px}
+.svc.hide{display:none}
+.gal img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:6px}
+img.ph{width:100%;object-fit:cover}
+details{border-bottom:1px solid var(--line);padding:18px 0}
+summary{cursor:pointer;font:500 24px "Cormorant Garamond",serif}
+details p{color:var(--soft);margin-top:8px}
+.chap{min-height:190vh}
+.logo img{height:44px;display:block}
+</style>
+</head>
+<body>
+<div class="loader" id="loader">NAILS ANSOAR</div>
+<div class="bar" id="bar"></div>
+<div class="stage"><canvas id="c"></canvas></div>
+
+<nav><div class="logo">Nails Ansoar</div><a class="btn ghost" href="#reservar">Reservar</a></nav>
+
+<div class="scrolly" id="scrolly">
+  <div class="chap"><div class="in">
+    <span class="kick">Manicura & Pedicura · Málaga</span>
+    <h1>Uñas que <em>hablan</em> por ti</h1>
+    <p>Atención personalizada en Clínica Valor. Cada detalle, hecho a mano.</p>
+    <div class="ctas"><a class="btn" href="#reservar">Pedir cita</a><a class="btn ghost" href="#servicios">Ver servicios</a></div>
+  </div></div>
+  <div class="chap"><div class="in">
+    <span class="kick">01 · Preparación</span>
+    <h2>Todo empieza con una base perfecta</h2>
+    <p>Limpieza, cutícula y forma a tu medida, para que el esmalte dure semanas.</p>
+  </div></div>
+  <div class="chap"><div class="in">
+    <span class="kick">02 · Color</span>
+    <h2>Una pincelada precisa</h2>
+    <p>Esmaltes semipermanentes y gel de alta calidad, en el tono que elijas.</p>
+  </div></div>
+  <div class="chap"><div class="in">
+    <span class="kick">03 · Acabado</span>
+    <h2>Brillo que se nota</h2>
+    <p>Sellado y curado con lámpara UV para un acabado espejo y resistente.</p>
+  </div></div>
+</div>
+
+<div class="content">
+  <section class="s">
+    <div class="benef">
+      <div><h3>Precio accesible</h3><p>Diseños de lujo a precios cercanos.</p></div>
+      <div><h3>Pago fácil</h3><p>Efectivo, tarjeta de crédito o débito.</p></div>
+      <div><h3>Mejor servicio</h3><p>Tu satisfacción es lo primero.</p></div>
+      <div><h3>Fácil de llegar</h3><p>En Clínica Valor, en pleno centro.</p></div>
+    </div>
+  </section>
+
+  <section class="s" id="servicios">
+    <span class="kick" style="color:var(--rose)">Servicios</span>
+    <h2>Carta de servicios</h2>
+    <p class="lead">Precios desde. Te asesoro en cada cita para elegir lo que mejor va contigo.</p>
+    <div class="tabs" id="tabs"><button class="on" data-f="all">Todos</button><button data-f="mani">Manicura</button><button data-f="pedi">Pedicura</button><button data-f="premium">Premium</button></div>
+    <div class="grid" id="svcs">
+      <div class="svc" data-c="mani"><img src="img/rubberbase.jpg" alt="Semipermanente"><h3>Semipermanente clásica</h3><p>Limado, cutícula y esmaltado de larga duración.</p><div class="row"><span>45 min</span><span class="price">desde 18 €</span></div></div>
+      <div class="svc" data-c="mani premium"><img src="img/polygel.jpg" alt="Polygel"><h3>Polygel + diseño</h3><p>Construcción con polygel y diseño personalizado.</p><div class="row"><span>90 min</span><span class="price">desde 32 €</span></div></div>
+      <div class="svc" data-c="pedi"><img src="img/pedicura.jpg" alt="Spa de pies"><h3>Spa de pies</h3><p>Cuidado estético y relajante para tus pies.</p><div class="row"><span>60 min</span><span class="price">desde 24 €</span></div></div>
+      <div class="svc" data-c="pedi premium"><img src="img/azules.jpg" alt="Pedicura profunda"><h3>Pedicura profunda</h3><p>Durezas, cutícula, hidratación y esmaltado.</p><div class="row"><span>75 min</span><span class="price">desde 30 €</span></div></div>
+    </div>
+  </section>
+
+  <section class="s">
+    <span class="kick" style="color:var(--rose)">Trabajos</span>
+    <h2>Galería</h2>
+    <p class="lead">Algunos de mis trabajos.</p>
+    <div class="gal"><img src="img/colorpastel.jpg" alt="Uñas pastel"><img src="img/polygel.jpg" alt="Polygel"><img src="img/azules.jpg" alt="Uñas azules"><img src="img/rubberbase.jpg" alt="Rubber base"></div>
+  </section>
+
+  <section class="s about">
+    <img class="ph" src="img/salon.jpg" alt="Salón">
+    <div>
+      <span class="kick" style="color:var(--rose)">Sobre mí</span>
+      <h2>Hola, soy Amanda</h2>
+      <p class="lead" style="margin-bottom:20px">Combino calidad, estilo y precios accesibles en manicura y pedicura, en un espacio moderno y relajante dentro de Clínica Valor.</p>
+      <p style="color:var(--soft)">Mi objetivo es que cada clienta se sienta especial y disfrute de un tratamiento de lujo cerca de casa.</p>
+    </div>
+  </section>
+
+  <section class="s find" id="faq">
+    <span class="kick" style="color:var(--rose)">Preguntas frecuentes</span>
+    <h2 style="margin-bottom:28px">Lo que siempre me preguntan</h2>
+    <details><summary>¿Cómo reservo una cita?</summary><p>Escríbeme por WhatsApp y te doy el hueco que mejor te venga.</p></details>
+    <details><summary>¿Qué formas de pago aceptas?</summary><p>Efectivo, tarjeta de crédito y débito.</p></details>
+    <details><summary>¿Cuál es el horario?</summary><p>Lunes a viernes de 10:00 a 14:00 y de 16:00 a 20:00. Sábados de 10:00 a 14:00. Domingos cerrado.</p></details>
+    <details><summary>¿Los precios son fijos?</summary><p>Varían según el servicio y el diseño; los verás en la carta de servicios.</p></details>
+  </section>
+
+  <section class="s find" id="donde">
+    <span class="kick" style="color:var(--rose)">Dónde estoy</span>
+    <h2 style="margin-bottom:36px">Clínica Valor</h2>
+    <div class="cols">
+      <div><span>Dirección</span>Calle Ejemplo 00, Málaga</div>
+      <div><span>Horario</span>L–V · 10:00–14:00 y 16:00–20:00<br>Sábados · 10:00–14:00</div>
+      <div><span>Contacto</span>+34 600 000 000<br>@nailsansoar</div>
+    </div>
+  </section>
+
+  <div class="cta-wrap"><section class="s cta" id="reservar">
+    <span class="kick">Reserva</span>
+    <h2>¿Te pinto las uñas?</h2>
+    <p style="opacity:.75;margin:16px auto 32px;max-width:460px">Escríbeme por WhatsApp y te doy cita en el hueco que mejor te venga.</p>
+    <a class="btn" href="https://wa.me/34600000000" target="_blank" rel="noopener">Reservar por WhatsApp</a>
+  </section></div>
+  <footer>© 2026 Nails Ansoar · Clínica Valor, Málaga</footer>
+</div>
+
+<a class="wa" href="https://wa.me/34600000000" target="_blank" rel="noopener" aria-label="WhatsApp"><svg width="28" height="28" viewBox="0 0 24 24" fill="#fff"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.2z"/></svg></a>
 
 <script>
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            colors: {
-              primary: "#91c1a6", // Muted brownish gold for buttons/accents
-              "primary-hover": "#91a88c", // Slightly darker for hover state
-              "background-light": "#EBEAE0", // Light cream/beige
-              "background-dark": "#1F1E1B", // Dark charcoal/brownish black
-              "surface-light": "#F5F4ED",
-              "surface-dark": "#2D2B28",
-              "text-main-light": "#1A1A1A",
-              "text-main-dark": "#E5E5E5",
-              "text-muted-light": "#555555",
-              "text-muted-dark": "#A3A3A3",
-              "footer-bg": "#5D4F42", // Dark brown from footer
-            },
-            fontFamily: {
-              display: ["Cormorant Garamond", "serif"],
-                sans: ["Helvetica Neue", "Arial", "sans-serif"],
-            },
-            borderRadius: {
-              DEFAULT: "4px",
-            },
-            backgroundImage: {
-                'subtle-pattern': "url('data:image/svg+xml,%3Csvg width=\\'60\\' height=\\'60\\' viewBox=\\'0 0 60 60\\' xmlns=\\'http://www.w3.org/2000/svg\\'%3E%3Cg fill=\\'none\\' fill-rule=\\'evenodd\\'%3E%3Cg fill=\\'%239C855F\\' fill-opacity=\\'0.05\\'%3E%3Cpath d=\\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')",
-            }
-          },
-        },
-      };
-    </script>
-</head>
-<body class="bg-background-light dark:bg-background-dark text-text-main-light dark:text-text-main-dark font-sans transition-colors duration-300">
-<div class="fixed inset-0 pointer-events-none overflow-hidden h-full w-full z-0">
-<svg class="curved-line top-0 left-0 w-full h-full stroke-primary dark:stroke-white" fill="none" viewBox="0 0 1440 900" xmlns="http://www.w3.org/2000/svg">
-<path d="M-100 600 C 200 400, 600 800, 1500 200" fill="none" stroke-width="1.5"></path>
-<path d="M-100 650 C 250 450, 650 850, 1550 250" fill="none" stroke-width="1.5"></path>
-</svg>
-</div>
-<header class="relative z-50 px-6 py-6 md:px-12 flex justify-between items-center max-w-7xl mx-auto">
-<div class="flex items-center">
-<img alt="Logotipo de Amanda Ansoar" class="h-48 w-auto object-contain mix-blend-multiply dark:mix-blend-normal dark:invert" src=".\img\amandalogo.png"/>
-</div>
-<nav class="hidden md:flex space-x-12">
-<a class="text-sm uppercase tracking-widest hover:text-primary transition-colors font-medium border-b-2 border-primary pb-1" href="#">Inicio</a>
-<a class="text-sm uppercase tracking-widest text-text-muted-light dark:text-text-muted-dark hover:text-primary transition-colors font-medium" href="#">Nosotros</a>
-<a class="text-sm uppercase tracking-widest text-text-muted-light dark:text-text-muted-dark hover:text-primary transition-colors font-medium" href="#">Servicios</a>
-<a class="text-sm uppercase tracking-widest text-text-muted-light dark:text-text-muted-dark hover:text-primary transition-colors font-medium" href="#">Ubicación</a>
-</nav>
-<button aria-controls="mobile-menu" aria-expanded="false" class="md:hidden text-text-main-light dark:text-text-main-dark rounded-full border border-primary/40 p-2 shadow-sm transition hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60" id="mobile-menu-toggle" type="button">
-<span class="material-icons-outlined" data-menu-icon="open">menu</span>
-<span class="material-icons-outlined hidden" data-menu-icon="close">close</span>
-</button>
-</header>
-<div class="relative z-40 md:hidden">
-<div class="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300" data-mobile-overlay id="mobile-menu"></div>
-<nav aria-hidden="true" aria-label="Navegación móvil" class="fixed right-0 top-0 z-50 h-full w-72 translate-x-full opacity-0 pointer-events-none bg-white/95 dark:bg-surface-dark/95 px-6 pb-8 pt-24 shadow-2xl transition-all duration-300" data-mobile-panel>
-<div class="mb-6 text-xs uppercase tracking-[0.3em] text-text-muted-light dark:text-text-muted-dark">Menú</div>
-<a class="mobile-menu-link text-sm uppercase tracking-widest font-medium border-b border-primary pb-3" href="#">Inicio</a>
-<a class="mobile-menu-link mt-4 text-sm uppercase tracking-widest text-text-muted-light dark:text-text-muted-dark font-medium" href="#">Nosotros</a>
-<a class="mobile-menu-link mt-4 text-sm uppercase tracking-widest text-text-muted-light dark:text-text-muted-dark font-medium" href="#">Servicios</a>
-<a class="mobile-menu-link mt-4 text-sm uppercase tracking-widest text-text-muted-light dark:text-text-muted-dark font-medium" href="#">Ubicación</a>
-</nav>
-</div>
-<section class="relative z-10 max-w-7xl mx-auto px-6 md:px-12 py-12 md:py-20 lg:py-24 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-<div class="space-y-8 pr-0 lg:pr-12">
-<h1 class="text-5xl md:text-7xl font-display leading-tight text-text-main-light dark:text-text-main-dark">
-                Belleza <br/> <span class="italic">en Uñas</span>
-</h1>
-<p class="text-text-muted-light dark:text-text-muted-dark text-lg md:text-xl max-w-md leading-relaxed">
-                Hacemos que tus uñas luzcan hermosas y saludables, con muchos servicios increíbles. Pruébalo ahora.
-            </p>
-<button class="bg-primary hover:bg-primary-hover text-white px-8 py-4 rounded-none font-sans font-bold tracking-wide transition-colors shadow-lg">
-                Comenzar
-            </button>
-</div>
-<div class="relative mt-8 lg:mt-0">
-<div class="grid grid-cols-2 gap-4 relative">
-<div class="col-span-1 pt-12">
-<img alt="Primer plano de una manicura hermosa" class="w-full h-64 md:h-80 object-cover shadow-xl rounded-sm transform translate-y-4" src="./img/rubberbase.jpeg"/>
-</div>
-<div class="col-span-1">
-<img alt="Ambiente lujoso de spa de uñas" class="w-full h-64 md:h-80 object-cover shadow-xl rounded-sm" src="./img/colorpastel.jpeg"/>
-</div>
-<div class="absolute top-60 right-4 md:right-12 bg-primary/90 dark:bg-surface-dark/95 backdrop-blur-sm p-6 max-w-xs shadow-2xl rounded-sm text-white dark:text-gray-100">
-<h3 class="font-display text-xl mb-2">Uñas pastel</h3>
-<p class="text-sm opacity-90 mb-4 font-light">Uñas pastel con colores populares como rosa menta, lavanda, entre otros.</p>
-<a class="text-sm font-bold uppercase tracking-wide flex items-center gap-2 hover:gap-3 transition-all" href="#">
-                        Pruébalo ahora <span class="material-icons-outlined text-sm">arrow_forward</span>
-</a>
-</div>
-</div>
-</div>
-</section>
-<section class="relative z-10 max-w-7xl mx-auto px-6 md:px-12 py-20">
-<div class="text-center mb-16">
-<h2 class="text-3xl md:text-4xl font-display text-text-main-light dark:text-text-main-dark mb-4">Tenemos muchos beneficios <br/> que te pueden encantar</h2>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-<div class="group p-6 bg-transparent hover:bg-white dark:hover:bg-surface-dark transition-colors duration-300 rounded-lg">
-<div class="border-l-4 border-primary pl-4 mb-4">
-<h3 class="font-display text-xl font-bold text-text-main-light dark:text-text-main-dark">Precio accesible</h3>
-</div>
-<p class="text-text-muted-light dark:text-text-muted-dark text-sm leading-relaxed">
-                    Te ofrecemos diseños exclusivos y de lujo a un precio accesible para todos.
-                </p>
-</div>
-<div class="group p-6 bg-transparent hover:bg-white dark:hover:bg-surface-dark transition-colors duration-300 rounded-lg">
-<div class="border-l-4 border-primary pl-4 mb-4">
-<h3 class="font-display text-xl font-bold text-text-main-light dark:text-text-main-dark">Pago fácil</h3>
-</div>
-<p class="text-text-muted-light dark:text-text-muted-dark text-sm leading-relaxed">
-                    Trabajamos con varios bancos, por eso contamos con múltiples opciones de pago.
-                </p>
-</div>
-<div class="group p-6 bg-transparent hover:bg-white dark:hover:bg-surface-dark transition-colors duration-300 rounded-lg">
-<div class="border-l-4 border-primary pl-4 mb-4">
-<h3 class="font-display text-xl font-bold text-text-main-light dark:text-text-main-dark">Mejor servicio</h3>
-</div>
-<p class="text-text-muted-light dark:text-text-muted-dark text-sm leading-relaxed">
-                    Nunca decepcionamos a nuestros clientes porque ofrecemos nuestro mejor servicio.
-                </p>
-</div>
-<div class="group p-6 bg-transparent hover:bg-white dark:hover:bg-surface-dark transition-colors duration-300 rounded-lg">
-<div class="border-l-4 border-primary pl-4 mb-4">
-<h3 class="font-display text-xl font-bold text-text-main-light dark:text-text-main-dark">Cerca de la ciudad</h3>
-</div>
-<p class="text-text-muted-light dark:text-text-muted-dark text-sm leading-relaxed">
-                    Nuestro local está en el centro de la ciudad, así que puedes llegar fácilmente.
-                </p>
-</div>
-</div>
-</section>
-<section class="relative z-10 bg-white dark:bg-surface-dark py-20 transition-colors duration-300">
-<div class="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-<div class="lg:col-span-7">
-<img alt="Primer plano de manos con manicura fresca" class="w-full h-80 lg:h-96 object-cover rounded-sm shadow-md" src=".\img\salon.jpeg"/>
-</div>
-<div class="lg:col-span-5 space-y-6">
-<h3 class="font-display text-3xl md:text-4xl text-text-main-light dark:text-text-main-dark leading-tight">Experiencia y belleza en un solo lugar</h3>
-<p class="text-text-muted-light dark:text-text-muted-dark text-sm leading-relaxed">
-Fundado por una ex cheerleader de la NFL, Amanda Ansoar es un salón de uñas y peluquería que combina calidad, estilo y precios accesibles. Ofrecemos servicios profesionales de manicura, pedicura y cuidado capilar en un ambiente moderno, relajante y acogedor, pensado para que cada cliente se sienta especial desde el primer momento. Nuestro espacio está diseñado para que disfrutes de tratamientos de lujo sin salir de tu zona de confort, cuidando cada detalle y adaptándonos a tu estilo de vida.
-</p>
-<button class="bg-primary hover:bg-primary-hover text-white px-6 py-3 text-sm rounded-none font-bold uppercase tracking-wider transition-colors">
-                    Leer más
-                </button>
-</div>
-</div>
-</section>
-<section class="relative z-10 max-w-7xl mx-auto px-6 md:px-12 py-24">
-<div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-<div class="order-2 lg:order-1 relative">
-<img alt="Técnica de uñas aplicando esmalte" class="w-full h-[500px] object-cover rounded-sm shadow-xl" src="./img/polygel.jpeg"/>
-<div class="absolute -bottom-6 -right-6 w-24 h-24 bg-primary/20 rounded-full z-[-1]"></div>
-</div>
-<div class="order-1 lg:order-2 space-y-10">
-<h2 class="text-4xl font-display text-text-main-light dark:text-text-main-dark mb-8">Nuestros servicios a tu disposición</h2>
-<div class="space-y-8">
-<div class="flex gap-4">
-<div class="mt-1 text-primary">
-<img alt="Servicio de manicura" class=" h-10 " src="./icons/manicura.png"/>
- </div>
-<div>
-<h4 class="font-bold text-lg text-text-main-light dark:text-text-main-dark font-display mb-1">Manicura</h4>
-<p class="text-sm text-text-muted-light dark:text-text-muted-dark leading-relaxed">Diseño, limpieza y esmaltado profesional para manos siempre perfectas.</p>
-</div>
-</div>
-<div class="flex gap-4">
-<div class="mt-1 text-primary">
-<img alt="Servicio de pedicura" class=" h-10 " src="./icons/pedicure.png"/>
-</div>
-<div>
-<h4 class="font-bold text-lg text-text-main-light dark:text-text-main-dark font-display mb-1">Pedicura</h4>
-<p class="text-sm text-text-muted-light dark:text-text-muted-dark leading-relaxed">Tratamientos estéticos y relajantes para el cuidado integral de tus pies.</p>
-</div>
-</div>
-<div class="flex gap-4">
-<div class="mt-1 text-primary">
-<img alt="Servicio de alisados" class=" h-10 " src="./icons/plancha-de-pelo.png"/>
-</div>
-<div>
-<h4 class="font-bold text-lg text-text-main-light dark:text-text-main-dark font-display mb-1">Alisados</h4>
-<p class="text-sm text-text-muted-light dark:text-text-muted-dark leading-relaxed">Resultados lisos, naturales y duraderos con productos de alta calidad.</p>
-</div>
-</div>
-<div class="flex gap-4">
-<div class="mt-1 text-primary">
-<img alt="Servicio de tratamientos capilares" class=" h-10 " src="./icons/belleza.png"/>
-</div>
-<div>
-<h4 class="font-bold text-lg text-text-main-light dark:text-text-main-dark font-display mb-1">Tratamientos capilares</h4>
-<p class="text-sm text-text-muted-light dark:text-text-muted-dark leading-relaxed">Hidratación, reparación y nutrición profunda para tu cabello.</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section class="relative z-10 max-w-7xl mx-auto px-6 md:px-12 pb-24" id="servicios-panel">
-<div class="rounded-sm border border-primary/20 bg-white/90 dark:bg-surface-dark/90 shadow-xl p-8 md:p-12 backdrop-blur-sm">
-<div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10">
-<div class="max-w-2xl">
-<p class="text-xs uppercase tracking-[0.3em] text-text-muted-light dark:text-text-muted-dark mb-3">Panel de servicios</p>
-<h2 class="text-3xl md:text-4xl font-display text-text-main-light dark:text-text-main-dark mb-4">Elige tu categoría y encuentra tu servicio ideal</h2>
-<p class="text-sm md:text-base text-text-muted-light dark:text-text-muted-dark leading-relaxed">Creamos un panel claro y rápido para comparar opciones, tiempos y precios estimados sin perder la estética limpia y elegante del sitio.</p>
-</div>
-<a class="inline-flex items-center gap-2 text-sm uppercase tracking-widest font-medium text-primary hover:text-primary-hover transition-colors" href="#">
-<span class="material-icons-outlined text-base">calendar_month</span>
-Reservar ahora
-</a>
-</div>
-
-<div class="flex flex-wrap gap-3 mb-8" role="tablist" aria-label="Filtros de servicios">
-<button class="service-filter is-active" data-filter="todos" role="tab" aria-selected="true" type="button">Todos</button>
-<button class="service-filter" data-filter="manicura" role="tab" aria-selected="false" type="button">Manicura</button>
-<button class="service-filter" data-filter="pedicura" role="tab" aria-selected="false" type="button">Pedicura</button>
-<button class="service-filter" data-filter="capilar" role="tab" aria-selected="false" type="button">Capilar</button>
-<button class="service-filter" data-filter="premium" role="tab" aria-selected="false" type="button">Premium</button>
-</div>
-
-<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6" data-services-grid>
-<article class="service-card" data-category="manicura">
-<p class="service-card-tag">Manicura</p>
-<h3 class="service-card-title">Semipermanente clásica</h3>
-<p class="service-card-description">Limpieza, forma y esmaltado semipermanente con acabado brillante de larga duración.</p>
-<div class="service-card-meta">
-<span>45 min</span>
-<strong>Desde $18</strong>
-</div>
-</article>
-
-<article class="service-card" data-category="manicura premium">
-<p class="service-card-tag">Manicura · Premium</p>
-<h3 class="service-card-title">Polygel + diseño</h3>
-<p class="service-card-description">Construcción con polygel, nivelación y nail art personalizado para un look único.</p>
-<div class="service-card-meta">
-<span>90 min</span>
-<strong>Desde $32</strong>
-</div>
-</article>
-
-<article class="service-card" data-category="pedicura">
-<p class="service-card-tag">Pedicura</p>
-<h3 class="service-card-title">Spa de pies</h3>
-<p class="service-card-description">Exfoliación suave, hidratación y esmalte para pies descansados y prolijos.</p>
-<div class="service-card-meta">
-<span>60 min</span>
-<strong>Desde $24</strong>
-</div>
-</article>
-
-<article class="service-card" data-category="pedicura premium">
-<p class="service-card-tag">Pedicura · Premium</p>
-<h3 class="service-card-title">Pedicura profunda</h3>
-<p class="service-card-description">Tratamiento completo con retiro de durezas, masaje y esmaltado semipermanente.</p>
-<div class="service-card-meta">
-<span>75 min</span>
-<strong>Desde $30</strong>
-</div>
-</article>
-
-<article class="service-card" data-category="capilar">
-<p class="service-card-tag">Capilar</p>
-<h3 class="service-card-title">Alisado express</h3>
-<p class="service-card-description">Control de frizz y acabado suave para una rutina diaria más práctica.</p>
-<div class="service-card-meta">
-<span>80 min</span>
-<strong>Desde $40</strong>
-</div>
-</article>
-
-<article class="service-card" data-category="capilar premium">
-<p class="service-card-tag">Capilar · Premium</p>
-<h3 class="service-card-title">Ritual de reparación</h3>
-<p class="service-card-description">Diagnóstico + hidratación intensa con activos nutritivos para cabello dañado.</p>
-<div class="service-card-meta">
-<span>70 min</span>
-<strong>Desde $38</strong>
-</div>
-</article>
-</div>
-</div>
-</section>
-<section class="relative z-10 bg-surface-light dark:bg-surface-dark py-24 transition-colors duration-300">
-<div class="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-12">
-<div class="lg:col-span-7">
-<h2 class="text-3xl md:text-4xl font-display text-text-main-light dark:text-text-main-dark mb-10">Nuestras preguntas más frecuentes</h2>
-<div class="space-y-4">
-<div class="border-b border-gray-300 dark:border-gray-700 pb-4">
-<details class="group cursor-pointer">
-<summary class="flex justify-between items-center font-medium text-text-main-light dark:text-text-main-dark list-none">
-                                Cómo agendar un servicio
-                                <span class="transition group-open:rotate-180 material-icons-outlined text-gray-400">expand_more</span>
-</summary>
-<div class="text-text-muted-light dark:text-text-muted-dark text-sm mt-3 leading-relaxed">
-                                Usted puede agendar un servicio a través del formulario en esta web o por WhatsApp.
-</details>
-</div>
-<div class="border-b border-gray-300 dark:border-gray-700 pb-4">
-<details class="group cursor-pointer">
-<summary class="flex justify-between items-center font-medium text-text-main-light dark:text-text-main-dark list-none">
-                                Métodos de pago aceptados
-                                <span class="transition group-open:rotate-180 material-icons-outlined text-gray-400">expand_more</span>
-</summary>
-<div class="text-text-muted-light dark:text-text-muted-dark text-sm mt-3 leading-relaxed">
-                                Aceptamos pagos en efectivo, tarjetas de crédito y débito.   
-</div>
-</details>
-</div>
-<div class="border-b border-gray-300 dark:border-gray-700 pb-4">
-<details class="group cursor-pointer">
-<summary class="flex justify-between items-center font-medium text-text-main-light dark:text-text-main-dark list-none">
-                                Horarios de atención
-                                <span class="transition group-open:rotate-180 material-icons-outlined text-gray-400">expand_more</span>
-</summary>
-<div class="text-text-muted-light dark:text-text-muted-dark text-sm mt-3 leading-relaxed">
-                                Estamos abiertos de lunes a viernes de 10:00 a 14:00 y de 16:00 a 20:00. Sábados de 10:00 a 14:00 Cerramos los domingos.
-</details>
-</div>
-<div class="border-b border-gray-300 dark:border-gray-700 pb-4">
-<details class="group cursor-pointer">
-<summary class="flex justify-between items-center font-medium text-text-main-light dark:text-text-main-dark list-none">
-                                Precios de los servicios
-                                <span class="transition group-open:rotate-180 material-icons-outlined text-gray-400">expand_more</span>
-</summary>
-<div class="text-text-muted-light dark:text-text-muted-dark text-sm mt-3 leading-relaxed">
-                                Nuestros precios varían según el servicio. Consulte nuestra lista de precios en la sección de servicios.            
-</div>
-</details>
-</div>
-</div>
-</div>
-<div class="lg:col-span-5 h-full">
-<img alt="Mano elegante con joyería" class="w-full h-full min-h-[400px] object-cover rounded-sm shadow-md" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzc8RdonmnCPqD4YeKNacUblNe3BXrW7nRU90bVv5r0jkHK1h3_DqGNMjLMqdfGzWPxYxAWKVd_lHvbyRPHkX6qk_1dzNYEpvStnwOMXNccFyfxMP-G8ggz4NADdX4C-y9UxHh3KVarm8AhY15dK6JANwpMJm9r0KlbTVtsJx67HQhZofJNo8fRC9A51brWtBE3fN-0Bt_Kbx10TSgAkv1bZ1fcxHjg91LJJCe9ok24ZUAumXHzXAonhPWGX7BSKN4zvfj-otCBbM"/>
-</div>
-</div>
-</section>
-<section class="relative z-10 max-w-7xl mx-auto px-6 md:px-12 py-20 pb-32 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-<div>
-<img alt="Servicio de belleza que ahorra tiempo" class="w-full h-80 object-cover rounded-sm shadow-lg" src="./img/schedule.jpeg"/>
-</div>
-<div>
-<h2 class="text-4xl font-display text-text-main-light dark:text-text-main-dark mb-6 leading-tight">Ahorra tiempo usando nuestros servicios</h2>
-<p class="text-text-muted-light dark:text-text-muted-dark mb-8">
-                Nuestro sistema de reservas eficiente y el personal profesional garantizan que recibas el cuidado que necesitas sin esperas.
-            </p>
-<button class="bg-primary hover:bg-primary-hover text-white px-8 py-3 rounded-none font-bold tracking-wide transition-colors">
-                Reservar cita
-            </button>
-</div>
-</section>
-<footer class="bg-footer-bg text-white py-16">
-<div class="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-4 gap-12">
-<div class="col-span-1 md:col-span-1">
-<h3 class="text-2xl font-display font-bold mb-4">Amanda Ansoar</h3>
-<p class="text-gray-300 text-xs leading-relaxed mb-6">
-                   En Amanda Ansoar cuidamos cada detalle para que te sientas única. Uñas, belleza y bienestar en un espacio pensado para ti.
-                </p>
-<div class="flex space-x-4">
-<a class="text-white hover:text-primary transition-colors" href="#"><i class="material-icons-outlined text-lg">facebook</i></a>
-<a class="text-white hover:text-primary transition-colors" href="#"><i class="material-icons-outlined text-lg">smart_display</i></a>
-<a class="text-white hover:text-primary transition-colors" href="#"><i class="material-icons-outlined text-lg">alternate_email</i></a>
-</div>
-</div>
-<div class="col-span-1">
-<h4 class="font-display font-bold text-lg mb-6">Nosotros</h4>
-<ul class="space-y-3 text-sm text-gray-300">
-<li><a class="hover:text-white transition-colors" href="#">Servicios</a></li>
-<li><a class="hover:text-white transition-colors" href="#">Historia</a></li>
-<li><a class="hover:text-white transition-colors" href="#">Proyectos</a></li>
-<li><a class="hover:text-white transition-colors" href="#">Preguntas frecuentes</a></li>
-</ul>
-</div>
-<div class="col-span-1">
-<h4 class="font-display font-bold text-lg mb-6">Servicios</h4>
-<ul class="space-y-3 text-sm text-gray-300">
-<li><a class="hover:text-white transition-colors" href="#">Manicura</a></li>
-<li><a class="hover:text-white transition-colors" href="#">Pedicura</a></li>
-<li><a class="hover:text-white transition-colors" href="#">Esmalte de uñas</a></li>
-<li><a class="hover:text-white transition-colors" href="#">Más...</a></li>
-</ul>
-</div>
-<div class="col-span-1">
-<h4 class="font-display font-bold text-lg mb-6">Productos</h4>
-<ul class="space-y-3 text-sm text-gray-300">
-<li><a class="hover:text-white transition-colors" href="#">Esmalte de uñas</a></li>
-<li><a class="hover:text-white transition-colors" href="#">Cortaúñas</a></li>
-<li><a class="hover:text-white transition-colors" href="#">Cepillo para uñas</a></li>
-<li><a class="hover:text-white transition-colors" href="#">Decoración de uñas</a></li>
-</ul>
-</div>
-</div>
-<div class="max-w-7xl mx-auto px-6 md:px-12 mt-12 pt-8 border-t border-gray-600 text-center md:text-left text-xs text-gray-400">
-            © 2026 Salón Amanda Ansoar. Todos los derechos reservados.
-        </div>
-</footer>
-<script src="./main.js"></script>
-</body></html>
+// Para el vídeo vertical: añadir carpeta "fm/" y cambiar MOBILE_DIR
+const MOB=matchMedia("(max-width:760px)").matches;
+const FRAMES=MOB?193:201, dir=MOB?"fm/":"f/";
+const c=document.getElementById("c"), x=c.getContext("2d"), imgs=[];
+let loaded=0, cur=-1, target=0, smooth=0;
+const src=i=>dir+String(i+1).padStart(3,"0")+".jpg";
+for(let i=0;i<FRAMES;i++){const im=new Image();im.onload=()=>{loaded++;if(i===0)draw(0);if(loaded>=Math.min(20,FRAMES))document.getElementById("loader").classList.add("done")};im.src=src(i);imgs[i]=im}
+function size(){const d=Math.min(devicePixelRatio||1,2);c.width=innerWidth*d;c.height=innerHeight*d;cur=-1;draw(Math.round(smooth))}
+function draw(i){let im=imgs[i];if(!im||!im.complete||!im.naturalWidth){for(let k=i;k>=0;k--){if(imgs[k]&&imgs[k].naturalWidth){im=imgs[k];break}}if(!im)return}
+  if(i===cur)return;cur=i;
+  const cw=c.width,ch=c.height,r=Math.max(cw/im.naturalWidth,ch/im.naturalHeight),w=im.naturalWidth*r,h=im.naturalHeight*r;
+  // en móvil centra la uña (aprox. 52% horizontal)
+  const fx=0.5;
+  x.drawImage(im,(cw-w)*fx,(ch-h)/2,w,h)}
+const sc=document.getElementById("scrolly"), bar=document.getElementById("bar");
+function onScroll(){const r=sc.getBoundingClientRect(),total=sc.offsetHeight-innerHeight;
+  const p=Math.min(1,Math.max(0,-r.top/total));target=p*(FRAMES-1);
+  const h=document.documentElement;bar.style.width=(h.scrollTop/(h.scrollHeight-innerHeight)*100)+"%"}
+function loop(){smooth+=(target-smooth)*.07;draw(Math.round(smooth));requestAnimationFrame(loop)}
+addEventListener("scroll",onScroll,{passive:true});addEventListener("resize",size);
+size();onScroll();loop();
+setTimeout(()=>document.getElementById("loader").classList.add("done"),4000);
+const io=new IntersectionObserver(es=>es.forEach(e=>e.target.classList.toggle("on",e.isIntersecting)),{threshold:.2});
+document.querySelectorAll(".chap").forEach(el=>io.observe(el));
+document.getElementById("tabs").onclick=e=>{const f=e.target.dataset.f;if(!f)return;
+  document.querySelectorAll("#tabs button").forEach(b=>b.classList.toggle("on",b===e.target));
+  document.querySelectorAll("#svcs .svc").forEach(c=>c.classList.toggle("hide",f!=="all"&&!c.dataset.c.split(" ").includes(f)))};
+</script>
+</body>
+</html>
